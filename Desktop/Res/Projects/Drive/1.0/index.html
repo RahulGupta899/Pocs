@@ -1,0 +1,27 @@
+<!Doctype>
+<html>
+    <head>
+        <title>Drive</title>   
+        <link rel="stylesheet" href="styles.css">      
+    </head>
+    <body>
+        <button id="btnAddFolder">Add File</button>
+        <div id="divBreadCrumb">
+            <a href="" fid="-1" class="path">Root</a>
+        </div>
+        <div id="container">
+        </div>
+
+        <template>     <!--These are used to add data in the html page through js, codes within this doesn't executes -->
+            <div class="folder">
+                <span action="edit">Edit</span>
+                <span  action="delete">Delete</span>
+                <span  action="view">View</span>
+                <div purpose="name"></div>
+            </div>
+            <a class="path"></a>
+        </template>
+
+        <script type="text/javascript" src="script2.js"></script>
+    </body>
+</html>

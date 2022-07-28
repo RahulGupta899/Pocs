@@ -1,0 +1,69 @@
+*{  
+    margin:0;
+    box-sizing: border-box;  /*Extra space will not take for the border -->
+                            - border will be wrapped within the content only -->*/
+}
+
+/* #overlay{
+    background-color:rgb(66, 66, 66);
+    height: calc(100vh - 6vh);
+    width:100vw;
+    top: 6vh;
+    left:0%;
+    position:fixed; /* Positioning with the browser */ /*
+    z-index:1;
+    opacity: 0.9;
+} */
+.text{
+    color:white;
+    font-size:2.5rem;
+    position:absolute;  /*Sets top and left positioning in reference with its immediate parent*/
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%); /* gets placed at center of its parent */
+    text-align:center;
+}
+
+/******************* Menu Bar  **********************/
+#menu-bar{
+    background-color:rgb(15, 98, 98);
+    height:6vh;
+    padding:5px;
+    display:flex;
+    align-items:center;
+}
+.material-icons{
+    font-size:4vh;
+    margin-left:2vw;
+    border:1px solid black;
+    border-radius:2px;
+}
+.material-icons:hover{
+    background-color:azure;
+    border-radius:5px;
+    cursor:pointer;
+}
+select{
+    font-size:2.5vh;
+    margin-left:2vw;
+    height:4vh;
+    background-color:azure;
+    border-radius:5px;
+}
+
+/*************** Content******************/
+#content-container{
+    height: calc(100vh - 6vh);
+    border:2px solid black;
+    display:flex;
+} 
+#list-slide{
+    border:1px solid red;
+    width:15vw;
+    background-color:teal;
+}
+#preview-slide{
+    border:1px solid rgb(0, 255, 64);
+    width:85vw;
+    background-color:beige;
+}

@@ -1,0 +1,78 @@
+
+        .menu-bar{
+            border: 1px solid black;
+            width:80vw;
+            height:90px;
+            margin:0 auto;
+            display:flex;
+            justify-content:space-evenly;
+            align-items: center;
+        }
+        .tool-icon{
+            height:45px;
+        }
+
+        .color-set{
+            border: 1px solid green;
+            background-color:beige;
+            width:140px;
+            height:50px;
+            display:flex;
+            justify-content: space-evenly;
+            align-items:center;
+        }
+        .color{
+            height:30px;
+            width:30px;
+            border-radius:100%;
+        }
+        .blue{
+            background-color:lightsteelblue;
+            height:30px;
+            width:30px;
+        }
+        .green{
+            background-color:lightgreen;
+        }
+        .pink{
+            background-color:pink;
+        }
+
+        .size-set{
+            border: 1px solid black;
+            height:30px;
+            width:130px;
+            display:none;  /* for hiding */
+            justify-content: space-evenly;
+            align-items: center;
+            transition: all ease-in-out 5s; 
+            
+        }
+        .size{
+            background-color:lightgray;
+            border-radius:100%;
+        }
+        .size:hover{
+            transform:scale(1.2);
+        }
+        .size1{
+            height:10px;
+            width:10px;
+        }
+        .size2{
+            height:12px;
+            width:12px;
+        }
+        .size3{
+            height:14px;
+            width:14px;
+        }
+        .size4{
+            height:16px;
+            width:16px;
+        }
+
+        .active-icon{
+            background:violet;
+            border-radius:5px;
+        }

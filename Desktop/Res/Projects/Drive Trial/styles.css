@@ -1,0 +1,143 @@
+#header{
+    border:2px solid black;
+    margin:5px;
+    padding:10px;
+    justify-content:center;
+    display:flex;
+}
+#header button{
+    margin:20px;
+    height:50px;
+    width:140px;
+    background:rgb(246, 200, 159);
+    border-radius:10px;
+    
+}
+#header button:hover{
+    transform:scale(1.03)
+}
+#breadCrumb{
+    border:2px solid black;
+    margin:5px;
+    padding:10px;
+}
+#container{
+    border:2px solid black;
+    margin:5px;
+    padding:10px;
+    display:flex;
+}
+#apps{
+    border:2px solid black;
+    margin:5px;
+    padding:10px;
+}
+/* #breadCrumb:hover,#header:hover,#container:hover,#apps:hover{
+    transform:scale(1.01);
+} */
+
+.folder{
+    background: rgb(195, 151, 151);
+    border-radius: 10%;
+    height:100px;
+    width:100px;
+    margin:20px;
+    padding:20px;
+    padding-top:1px;
+    /* box-shadow: ; */
+}
+.folder span{
+    text-decoration: underline;
+    cursor:pointer;
+    font-style:italic;
+    font-size:18px;
+}
+.folder span:hover{
+    color:pink
+}
+.folder [purpose]{
+    margin-top:10px;
+    font-size:22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #btnAddFolder {
+    border-radius: 5px;
+    background-color: azure;
+    width: 200px;
+    margin-left: 600px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#btnAddFolder:hover {
+    transform: scale(1.02);
+}
+
+#divBreadCrumb {
+    border: 1px solid black;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px; 
+}
+
+.path {
+    cursor: pointer;
+
+    background-color: gray;
+    color: black;
+
+    padding: 10px;
+    border-right: 3px solid black;
+}
+
+.path:hover{
+    background-color: white;
+    color: blue;
+    text-decoration: underline;
+}
+
+#divContainer {
+    border: 1px solid black;
+    display: flex;
+    margin-top: 10px;
+}
+
+.folder {
+    background-color: teal;
+    border-radius: 5px;
+    height: 100px;
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.folder [action]{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+div[purpose=name]{
+    margin-top: 50px;
+    color: white;
+} */

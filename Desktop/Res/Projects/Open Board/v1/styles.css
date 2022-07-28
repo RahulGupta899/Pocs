@@ -1,0 +1,48 @@
+body{
+    margin:0;
+}
+.material-icons{
+    font-size:40px;
+    color:rgb(0, 0, 0);
+    border-radius:3px;
+    cursor:pointer;
+}
+
+.material-icons:hover{
+    transform: scale(1.2);
+}
+
+.menu{
+    height:50px;
+    display:flex;
+    background-color:lightgray;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.red{
+    background-color:rgb(245, 61, 61);
+    height:35px;
+    width:35px;
+    border-radius:50%;
+}
+
+.green{
+    background-color:lightgreen;
+    height:35px;
+    width:35px;
+    border-radius:50%;
+
+}
+.blue{
+    background:lightblue;
+    height:35px;
+    width:35px;
+    border-radius:50%;
+}
+.pink{
+    background:lightpink;
+    height:35px;
+    width:35px;
+    border-radius:50%;
+}
