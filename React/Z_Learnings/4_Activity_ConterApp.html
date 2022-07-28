@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <title>Counter App</title>
+
+        <title>todo App</title>
+        <!-- react is a ui manipulation (logic)library -->
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <!-- to convert jsx to js -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <link rel="stylesheet" href="4_styles.css">
+
+    </head>
+
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+
+            function Counter(props){
+                let cno = props.cno;
+                let [count,changeCount] = React.useState(0);
+                let parentCounterNo = props.counterNo;
+                let parentCountValue = props.count;
+                let resetParentProps = props.resetCounterProps;
+
+                const increment = function(){
+                    let newVal = Number(count)+1;
+                    changeCount(newVal);
+                }
+
+                const decrement = function(){
+                     let newVal = count-1;
+                    changeCount(newVal);
+                }
+
+                const resetProps = function(){
+                    resetParentProps();
+                }
+
+                
+
+                if(parentCounterNo == cno && count!=parentCountValue){
+                    console.log("Step 3: Change in Counter state "+parentCounterNo+" "+parentCountValue);
+                    resetProps();
+                    changeCount(parentCountValue);  //as we are changing the state, so this component will again render
+                }
+
+                return (
+                    <div className="counter">
+                        
+                        <h1>Counter {cno} </h1>
+                        <div className="counter-main">
+                            <button onClick={increment}>+</button>
+                            <h2>{count}</h2>
+                            <button onClick={decrement}>-</button>
+                        </div>
+                        
+                    </div>
+                )
+            }
+
+            function ResetCounter(props){
+                let [cno,changeCnoState] = React.useState("");
+                let [val,changeValState] = React.useState("");
+                let parentCall = props.getInformation;
+
+                const handleCnoChange = function(e){
+                    let newVal = e.target.value;
+                    changeCnoState(newVal);
+                }
+
+                const handleValChange = function(e){
+                    let newVal = e.target.value;
+                    changeValState(newVal);
+                }
+
+                const resetCounter = function(e){
+                    // send informatio to parent
+                    console.log("Step 1: submitted val"+cno+" "+val);
+                    parentCall(cno,val);
+                }
+
+                return(
+                    <div className="resetBox">
+                        <h1>Reset Counter</h1>
+                        <span >Counter Number</span>
+                        <input type="text" value={cno} onChange={handleCnoChange}/>
+                        <br></br>
+                        <span>Set Value</span>
+                        <input type="text" value={val} onChange={handleValChange}/>
+                        <p></p>
+                        <button onClick={resetCounter}>Reset</button>
+                    </div>
+                )
+            }
+
+            function App(){
+
+                let [counterNo, setCounterNo] = React.useState(0);
+                let [count,setCount] = React.useState(0);
+                const getResetInformation = function(cno, value){
+                    setCounterNo(cno);
+                    setCount(value);
+                    console.log("Step 2: update state in App(Parent) "+cno+" "+value);
+                }
+
+                const resetCounterProps = function(){
+                    setCounterNo(0);
+                    setCount(0);
+                }
+
+                return(
+                    <div>
+                        <h1 className="app-title"> Counter App </h1>
+                        <ResetCounter getInformation={getResetInformation}/>
+                        <div className="counterBox">
+                            <Counter  cno={1} counterNo={counterNo} count={count}  resetCounterProps={resetCounterProps}/>
+                            <Counter  cno={2} counterNo={counterNo} count={count}  resetCounterProps={resetCounterProps}/> 
+                            <Counter  cno={3} counterNo={counterNo} count={count}  resetCounterProps={resetCounterProps}/> 
+                            <Counter  cno={4} counterNo={counterNo} count={count}  resetCounterProps={resetCounterProps}/> 
+                            <Counter  cno={5} counterNo={counterNo} count={count}  resetCounterProps={resetCounterProps}/>  
+                        </div>                                             
+                    </div>
+                )
+            }
+
+            ReactDOM.render(<App/>, document.querySelector("#root"));
+        </script>
+    </body>
+
+</html>

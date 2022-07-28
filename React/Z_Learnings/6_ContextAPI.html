@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Context API Learnings</title>
+    <!-- react is a ui manipulation (logic)library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- to convert jsx to js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+
+    <script type="text/babel">
+
+    const contextMessage = React.createContext(); 
+
+        function GreatGrandParent(){
+            return(
+                <contextMessage.Provider value="SECRET_CODE">
+                    <div>
+                        <div> GREATE GRAND PARENT </div>
+                        <GrandParent/>
+                    </div>
+                </contextMessage.Provider>
+            )
+        }
+
+        function GrandParent(){
+            return(
+                <div>
+                    <div> GRAND PARENT </div>
+                    <Parent/>
+                </div>
+            )
+        }
+
+        function Parent(){
+            return(
+                <div>
+                    <div> PARENT </div>
+                    <Child/>
+                </div>
+            )
+        }
+
+        function Child(){
+            let msgFromGREATGF = React.useContext(contextMessage);
+            return(
+                <div>
+                    <div> CHILD {msgFromGREATGF}</div>
+                </div>
+            )
+        }
+
+
+
+
+
+        
+        function App(){
+            console.log("APP is executed");
+            return(
+                <GreatGrandParent/>
+            )
+        }
+        ReactDOM.render(<App/>,document.querySelector("#root"));
+
+
+    </script>
+
+
+
+
+</body>
+</html>

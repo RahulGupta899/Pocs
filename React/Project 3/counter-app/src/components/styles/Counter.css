@@ -1,0 +1,19 @@
+.counter{
+    border:1px solid gray;
+    margin:10px;
+    height:90%;
+    width:20%;
+    text-align: center;
+    background-color:#1D5C63;
+    border-radius:5px;
+    color:aliceblue;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+}
+button{
+    width:35%;
+    height:12%;
+    font-size:25px;
+}
+button:hover{
+    transform:scaleY(1.08);
+}

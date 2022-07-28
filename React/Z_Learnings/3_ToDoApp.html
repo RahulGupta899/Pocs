@@ -1,0 +1,79 @@
+
+<html>
+    <head>
+
+        <title>todo App</title>
+        <!-- react is a ui manipulation (logic)library -->
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <!-- to convert jsx to js -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    </head>
+
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+
+            function InputBox(props){
+                let [inputValue,setInputValue] = React.useState("");
+                let parentCall = props.parentCall;  // Function
+
+                const handleOnChange = function(e){
+                    setInputValue(e.target.value);
+                }
+
+                const handleButtonClick = function(){
+                    parentCall(inputValue);   // calling the parent
+                }
+
+                return (
+                    <div>
+                    <input type="text" value={inputValue} onChange={handleOnChange}/>  
+                    <button onClick={handleButtonClick}>Add</button>
+                    </div>
+                ) 
+            }
+            
+            function ListItems(props){
+                let tasks = props.tasks;
+                return (
+                    <div>
+                    <h1> Tasks </h1>
+                    <ul>
+                        {
+                            tasks.map(function(task,idx){ 
+                                return <li key={idx}>{task}</li>
+                            })
+                        }
+                    </ul>
+                    </div>
+                )
+            }
+
+            function App(){
+
+                let [tasks,updateTasks] = React.useState([]);
+
+                const getTask = function(task){
+                    console.log(task);
+                    let newTasks = [...tasks]; // copy the prevtasks in an new arr
+                    newTasks.push(task);
+                    updateTasks(newTasks);
+                    console.log(tasks);
+                }
+
+                return (
+                    <div>
+                        <h1>To Do App</h1>
+                        <InputBox  parentCall={getTask} />
+                        <ListItems tasks={tasks}/>
+                    </div>
+                )
+            }
+
+            ReactDOM.render(<App/> , document.querySelector("#root"));
+        </script>
+    </body>
+</html>

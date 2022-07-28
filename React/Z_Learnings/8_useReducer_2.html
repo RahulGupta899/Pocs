@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Use Reducer</title>
+    <!-- react is a ui manipulation (logic)library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- to convert jsx to js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+
+    <Script type="text/babel">
+        
+        // Using States
+        function BatUsingStates(){
+            let [bats,setBats] = React.useState(7);
+            let [showBats,setShowBats] = React.useState("");
+
+            const handleBatInputChange = function(e){
+                setShowBats(e.target.value);
+            }
+
+            const buyBat = function(){
+                setBats((state)=>{
+                    return state+Number(showBats);
+                })
+                setShowBats("");
+            }
+
+            const sellBat = function(){
+                setBats((state)=>{
+                    return state-Number(showBats);
+                })
+                setShowBats("");
+            }
+            
+            return(
+                <div>
+                    <h1>Bat App</h1>
+                    <h2> Number of Bats: {bats}</h2>
+                    <input type="number" value={showBats} onChange={handleBatInputChange}/>
+                    <button onClick={buyBat}>Buy</button>
+                    <button onClick={sellBat}>Sell</button>
+                </div>
+            )
+        }
+
+        // Using Reducer
+
+        let initialState = {
+            bats:10,
+            value:""    // this is for input - onChange
+        }
+        
+        function reducer(state,action){
+            switch(action.type){
+                case 'buy_bat':
+                        return {
+                            bats: state.bats + state.value,
+                            value: ""
+                        }
+                        break;
+                
+                case 'sell_bat':
+                        if(state.bats - state.value < 0){
+                            alert("Not enough stocks to sell");
+                            return {
+                                bats:state.bats,
+                                value:""
+                            }
+                        }
+                        return {
+                            bats: state.bats - state.value,
+                            value: ""
+                        }
+                        break;
+                
+                case 'set_bat_Input':
+                        return {
+                            bats: state.bats,
+                            value: Number(action.payload)   // using passed parameter
+                        }
+                        break;
+                
+                default:
+                    console.log("Wrong Type");
+            }
+        }
+
+            
+        function BatUsingReducer(){
+            
+            const [state,dispatch] = React.useReducer(reducer,initialState);
+
+            return(
+                <div>
+                    <h1>Bat</h1>
+                    <h2> Number of Bats: {state.bats} </h2>
+                    <input type="number" value={state.value} onChange={(e)=>{
+                        dispatch({type:'set_bat_Input',
+                                  payload:e.target.value    // Passing Argument    
+                                })
+                    }}/>
+                    <button onClick={()=>{
+                        dispatch({type:'buy_bat'})
+                    }}>Buy</button>
+
+                    <button onClick={()=>{
+                        dispatch({type:'sell_bat'})
+                    }}>Sell</button>
+                </div>
+            )
+        }
+
+
+
+
+
+
+
+
+
+
+
+        function App(){
+            return(
+                <BatUsingReducer/>
+            )
+        }
+
+        ReactDOM.render(<App/>, document.querySelector("#root"));
+
+    </Script>

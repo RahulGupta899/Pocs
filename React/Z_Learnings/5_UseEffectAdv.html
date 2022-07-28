@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Use effect Learnings</title>
+    <!-- react is a ui manipulation (logic)library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- to convert jsx to js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        
+        function IndividualTask(props){
+            let taskName = props.taskName;
+            let deleteTaskParentCall = props.deleteTask;
+
+            const cleanUp = function(){
+                console.log("Clean up EXECUTED When COMPONENT Destroyed...");
+            }
+            console.log("--------------------------------------------")
+            console.log("1_Before use Effect");
+            React.useEffect(function(){
+                console.log("3_Use Effected Executed");  // This message will print only once during MOUNTING
+                return cleanUp;                         //  and after that it will never print
+            });
+            
+            console.log("2_After use effect");
+        
+            const deleteTask = function(){
+                deleteTaskParentCall(taskName);
+            }
+
+            return(
+                <div>
+                    <span>{taskName}</span>
+                    <button onClick={deleteTask} >Delete</button>
+                </div> 
+            )
+        }
+        
+        function InputBox(props){
+            let [task,setTask] = React.useState("");
+            let addTaskParentCall = props.addTask;
+            const handleInput = function(e){
+                setTask(e.target.value);
+            }
+
+            const addTask = function(){
+                addTaskParentCall(task);
+            }
+
+            // const cleanUp = function(){
+            //     console.log("Clean up EXECUTED...");
+            // }
+            // console.log("--------------------------------------------")
+            // console.log("1_Before use Effect");
+            // React.useEffect(function(){
+            //     console.log("3_Use Effected Executed");
+            //     return cleanUp;
+            // },[task]);
+            
+            // console.log("2_After use effect");
+
+            return(
+                <div>
+                    <input value={task} onChange={handleInput} type="text" />
+                    <button onClick={addTask}> Add </button>
+                </div>
+            )
+        }
+
+        function TaskList(props){
+            let allTasks = props.allTasks;
+            let deleteTask = props.deleteTask;
+            let [temp,setTemp] = React.useState("");
+
+            return(
+                <div>
+                    {
+                        allTasks.map(function(item,idx){
+                            return <IndividualTask taskName={item.taskName} deleteTask={deleteTask} key={idx}/>
+                        })
+                    }
+                    
+                </div>
+            )
+        }
+
+        function App(){
+            let [allTasks,setAllTasks] = React.useState([]);
+            const addTask = function(task){
+                let newTasks = [...allTasks];
+                let item = {
+                    key:newTasks.length,
+                    taskName:task
+                }
+                newTasks.push(item);
+                setAllTasks(newTasks);
+            }
+            
+            const deleteTask = function(task){
+                console.log("Delete: "+task);
+                let newTasks = [...allTasks];
+                newTasks = newTasks.filter(function(item){
+                    return item.taskName!=task;
+                })
+                setAllTasks(newTasks);
+            }
+            
+            return(
+                <div>
+                    <InputBox addTask={addTask}/>
+                    <TaskList allTasks={allTasks} deleteTask={deleteTask}/>
+                </div>
+            )
+        }
+        
+        ReactDOM.render(<App/>, document.querySelector("#root"));
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>

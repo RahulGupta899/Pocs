@@ -1,0 +1,10 @@
+.status{
+    margin-top:50px;
+    height:50px;
+}
+.makeup:hover{
+    color:cornflowerblue;
+    border-bottom: 2px solid;
+    border-color: cornflowerblue;
+    padding-bottom: 5px;
+}

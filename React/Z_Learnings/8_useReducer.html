@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Use Reducer</title>
+    <!-- react is a ui manipulation (logic)library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- to convert jsx to js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+
+    <Script type="text/babel">
+        
+        // // USING REACT STATES
+        // function Ball(){ 
+
+        //     let [balls,setBalls] = React.useState(10);
+
+        //     const increment = function(){
+        //         setBalls((state)=>{
+        //             return state+1;
+        //         })
+        //     }
+        //     const decrement = function(){
+        //         setBalls((state)=>{
+        //             return state-1;
+        //         })
+        //     }
+        //     return(
+        //         <div>
+        //             <h1>Balls App</h1>
+        //             <h2>Number of Balls : {balls} </h2>
+        //             <button onClick={increment}>INC</button>
+        //             <button onClick={decrement}>DEC</button>
+        //         </div>
+        //     )
+        // }
+
+
+        // USING REACT REDUCER
+        function reducer(state,action){     //2
+            switch(action.type){
+                case "increment":
+                    return state+1;
+                case "decrement":
+                    return state-1;
+                default:
+                    console.log("Wrong Type");
+            }
+        }
+        function Ball(){
+            const [balls,dispatch] = React.useReducer(reducer,10);  //1
+
+            return(
+                <div>
+                    <h1>Balls App</h1>
+                    <h2>Number of Balls : {balls}</h2>
+                    <button onClick={()=>{dispatch({type:"increment"})}}>INC</button>   
+                    <button onClick={()=>{dispatch({type:"decrement"})}}>DEC</button>
+                </div> 
+            )
+        }
+
+
+        function App(){
+            return(
+                <Ball/>
+            )
+        }
+
+        ReactDOM.render(<App/>, document.querySelector("#root"));
+
+    </Script>

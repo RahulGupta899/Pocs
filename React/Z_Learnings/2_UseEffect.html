@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- react is a ui manipulation (logic)library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- to convert jsx to js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <!-- use to get data-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div id="root">
+    </div>
+
+    <script type="text/babel">
+        
+        function DelayedLoading(){
+            let [data,setData] = React.useState("");
+
+            React.useEffect(async function(){
+                let res = await axios.get('https://gorest.co.in/public/v2/posts');
+                let resData = JSON.stringify(res.data).substring(0,50);
+                console.log(resData);
+                setData(resData);
+            },[])
+
+            return (
+                <div>
+                    <h1> Data from Api </h1>
+                    {data == ""? <p>Loading...</p> : <p> {data} </p>}
+                </div>
+            )
+        }   
+
+
+
+
+        ReactDOM.render(<DelayedLoading/>, document.querySelector("#root"));
+    </script>
+</body>

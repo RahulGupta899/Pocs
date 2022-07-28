@@ -1,0 +1,11 @@
+.options{
+    height:638px;
+    width:13%;
+    margin-right:5px;
+    margin-top: 6px;
+    background-color: white;
+}
+.eachOption:hover{
+    border-right:2px solid cornflowerblue;
+    color:cornflowerblue;
+}

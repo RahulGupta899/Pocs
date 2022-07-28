@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- react is a ui manipulation (logic)library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- to convert jsx to js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+</head>
+<body>
+    <div id="root">
+            
+    </div>
+
+
+
+    <script type="text/babel">
+
+        function Counter(props){
+            let cno = props.no;
+
+            let [value,changeValue] = React.useState(0);
+            /* variable , HelperFuncion for the variable to change the state of that variable */
+
+            let increment = ()=>{
+                changeValue(value+1);
+            }
+
+            let decrement = ()=>{
+                changeValue((state)=>{
+                    return state+1;
+                })
+            }
+            
+            return(
+                <div>
+                    <h1>Counter Number {cno} </h1>
+                    <button onClick={increment}>+</button>
+                    <p>Count: {value}</p>
+                    <button onClick={decrement}>-</button>
+                    <h1>--------------------------------------</h1>
+                </div>
+            ) 
+                
+        }
+
+        function App(){
+            return(
+                <div>
+                    <Counter no={1}/>
+                    <Counter no={2}/>
+                    <Counter no={3}/>
+                    <Counter no={4}/>
+                </div>
+
+            )
+        }
+
+        ReactDOM.render(<App/>, document.querySelector("#root"));
+    </script>
+</body>
+</html>

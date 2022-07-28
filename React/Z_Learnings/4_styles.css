@@ -1,0 +1,29 @@
+.app-title{
+    border-bottom: 5px solid gray;
+    margin-bottom: 25px;
+}
+
+.resetBox{
+    border-bottom: 5px solid gray;
+    margin-bottom: 25px;
+    padding:20px;
+}
+span{
+    font-size: large;
+    margin-right:20px;
+}
+.resetBox > * {
+    color:rgb(189, 0, 50);
+    margin:5px;
+}
+.counterBox{
+    padding:5px;
+    border:2px solid gray;
+    display:flex;
+    justify-content: space-evenly;
+    overflow-x: auto;
+}
+.counter{
+    width:250px;
+    border:1px solid gray;
+}

@@ -1,0 +1,158 @@
+<html>
+    <head>
+        <title>Counter App</title>
+        <!-- react is a ui manipulation (logic)library -->
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <!-- to convert jsx to js -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <link rel="stylesheet" href="4_styles.css">
+    </head>
+
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+
+            //********* EACH COUNTER **********
+            function Counter(props){
+                let counterNo = props.counterNo;
+                let [count,setCount] = React.useState(0);   // COUNT STATE - while re-rendering , except this 
+                let resetCounterNo = props.resetCounterNo;  // all other variables are being redeclared
+                let resetCounterValue = props.resetCounterValue;
+                let defaultCounterNoParentApp = props.resetInformation;
+
+                const resetToDefaultCounterNo = function(){
+                    defaultCounterNoParentApp();
+                }
+ 
+                if(counterNo == resetCounterNo && resetCounterValue!=count){
+                    setCount(Number(resetCounterValue));
+                    resetToDefaultCounterNo();
+                }
+
+
+                const incrementCount = function(e){
+                    setCount(count+1);
+                }
+                const decrementCount = function(e){
+                    setCount(count-1);
+                }
+
+
+
+                return(
+                    <div className="counter">
+                        <h1>Counter {counterNo} </h1>
+                        <button onClick={incrementCount}>+</button>
+                        <h2>{count}</h2>
+                        <button onClick={decrementCount}>-</button>
+                    </div>
+                )
+            }
+            
+
+
+            //******** COUNTER LISTS ***********
+            function CounterLists(props){
+                let resetCounterNo = props.resetCounterNo;
+                let resetCounterValue = props.resetCounterValue;
+
+                let resetInfromationToDefault = props.resetInfromationToDefault;
+
+                return(
+                    <div className="counterBox">
+                        <Counter counterNo={1} resetCounterNo={resetCounterNo} resetCounterValue={resetCounterValue} resetInformation={resetInfromationToDefault} />
+                        <Counter counterNo={2} resetCounterNo={resetCounterNo} resetCounterValue={resetCounterValue} resetInformation={resetInfromationToDefault} />
+                        <Counter counterNo={3} resetCounterNo={resetCounterNo} resetCounterValue={resetCounterValue} resetInformation={resetInfromationToDefault} />
+                        <Counter counterNo={4} resetCounterNo={resetCounterNo} resetCounterValue={resetCounterValue} resetInformation={resetInfromationToDefault} />
+                    </div>
+                )
+            }
+
+
+
+            //******** RESET COUNTER BOX ************
+            function ResetCounterBox(props){
+
+                let [counterNo,setCounterNo] = React.useState("");
+                let [count,setCount] = React.useState("");
+                let parent = props.getInformation;
+
+                const handleCounterNumberChange = function(e){
+                    setCounterNo(e.target.value);
+                }
+
+                const handleCounterValueChange = function(e){
+                    setCount(e.target.value);
+                }
+
+                const sendInformationToParent = function(e){
+                    parent(counterNo,count);
+                }
+
+                return(
+                    <div className="resetBox">
+                        <h1> Reset Counter </h1>
+                        <span>Counter Number </span>
+                        <input type="text" value={counterNo} onChange={handleCounterNumberChange}/ >              
+                        <br></br>
+                        <span>Value </span>
+                        <input type="text" value={count} onChange={handleCounterValueChange}/ >
+                        <br></br>
+                        <button onClick={sendInformationToParent}>Reset Counter</button>
+                    </div>
+                )
+            }
+
+
+
+
+
+
+
+
+            //----------------------------------------------------------
+            //************ MAIN *******************
+            function App(){
+                let [resetCounterNumber, setCounterNumber] = React.useState(0);
+                let [resetCounterValue, setCounterValue] = React.useState(0);
+
+                const getInfo_From_ResetCounterBox = function(cno,value){
+                    setCounterNumber(cno);
+                    setCounterValue(value);
+                }
+
+                const setResetInfromationToDefault = function(){
+                    setCounterNumber(0);
+                    setCounterValue(0);
+                }
+
+                return(
+                    <div>
+                        <h1 className="app-title"> Counter App </h1>
+                        <ResetCounterBox getInformation={getInfo_From_ResetCounterBox}/>
+                        <CounterLists resetCounterNo={resetCounterNumber} resetCounterValue = {resetCounterValue} resetInfromationToDefault={setResetInfromationToDefault} />
+                    </div>
+                )
+            }
+
+
+            ReactDOM.render(<App/>, document.querySelector("#root"));
+
+
+
+
+
+
+
+
+        </script>
+
+
+
+    </body>
+
+</html>

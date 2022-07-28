@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Context API Learnings</title>
+    <!-- react is a ui manipulation (logic)library -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <!-- frontend -> dom --><!-- react dom -> webpage ke andar react lib ke help actual changes leke aao -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- to convert jsx to js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <Script type="text/babel">
+    
+     
+    React.memo(function ChildCounter(props){
+        console.log("rendered Child counter");
+        let count = props.count;
+        return(
+            <div>
+                <button>First counter clone</button>
+                <span>{count}</span>
+            </div>
+        )
+    })
+
+
+
+    function Counters(){
+        console.log("rendered Parent");
+        let [count1,setCount1] = React.useState(0);
+        let [count2,setCount2] = React.useState(0);
+
+        const Increment1 = ()=>{
+            setCount1((count)=>{
+                return count+1;
+            })
+        }
+
+        const Increment2 = ()=>{
+            setCount2((count)=>{
+                return count+1;
+            })
+        }
+
+        const isEven = React.useMemo(()=>{
+            console.log("Even funtion Executed...")
+            for(let i=0; i<300000000; i++){ // Delay 
+            } 
+
+            return count1%2 === 0;
+        },[count1]);   // validation laga diya ki jab count1 - update ho tab hi yeh chale
+
+        return(
+            <div>
+                <button onClick={Increment1}>First Counter </button>
+                <span>{count1}</span>
+                <span> {isEven ? "even" : "odd"} </span>
+
+                <br></br>
+
+                <button onClick={Increment2}>Second Counter </button>  
+                <span>{count2}</span>
+
+                <ChildCounter count={count1}/>
+                </div>
+
+                
+        )
+    }
+    
+    ReactDOM.render(<Counters/>, document.querySelector("#root"));
+    
+    </Script>
+</body>
+</html>

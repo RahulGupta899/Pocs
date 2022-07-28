@@ -1,0 +1,29 @@
+.light{
+    background:white;
+    color:black;
+    font-size:larger;
+    font-family:Arial, Helvetica, sans-serif;
+ }
+ 
+.dark{
+    background:black;
+    color:white;
+    font-family:'Times New Roman', Times, serif;
+    font-style:italic;
+}
+.github{
+    background:powderblue;
+    color:rgb(0, 0, 0);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.lame{
+    background:firebrick;
+    color:whitesmoke;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.horizon{
+    background:turquoise;
+    color:rgb(5, 1, 1);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
