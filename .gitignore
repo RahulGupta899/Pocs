@@ -4,4 +4,4 @@ error.log
 # IGNORE DIRECTORIES
 config/
 node_modules/
-dir/
+/dir/ 
