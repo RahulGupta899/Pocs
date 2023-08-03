@@ -1,0 +1,1 @@
+// This is ServiceWorkerRegistration.js file
